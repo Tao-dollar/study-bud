@@ -2,16 +2,16 @@
    1. Offline: pages and files are cached, so the app opens without internet.
    2. Notifications: shows alerts with Done / Snooze buttons and handles taps.
    Bump VERSION whenever you ship new files so phones pick them up. */
-const VERSION = "nudge-v1";
+const VERSION = "nudge-v2";
 const CORE = [
   "./", "index.html", "login.html", "onboarding.html", "dashboard.html", "timetable.html",
   "reminders.html", "reading.html", "notifications.html", "settings.html", "manifest.json",
-  "css/base.css", "css/components.css", "css/landing.css", "css/auth.css", "css/onboarding.css",
-  "css/app.css", "css/timetable.css", "css/lists.css", "css/alerts.css", "css/settings.css",
-  "js/storage.js", "js/copy.js", "js/ui.js", "js/auth.js", "js/app.js", "js/planner.js", "js/alerts.js",
-  "js/pwa.js", "js/landing.js", "js/login.js", "js/onboarding.js", "js/dashboard.js", "js/timetable.js",
-  "js/reminders.js", "js/reading.js", "js/notifications.js", "js/settings.js",
-  "assets/icons/icon.svg", "assets/icons/icon-192.png", "assets/icons/icon-512.png"
+  "base.css", "components.css", "landing.css", "auth.css", "onboarding.css",
+  "app.css", "timetable.css", "lists.css", "alerts.css", "settings.css",
+  "storage.js", "copy.js", "ui.js", "auth.js", "app.js", "planner.js", "alerts.js",
+  "pwa.js", "landing.js", "login.js", "onboarding.js", "dashboard.js", "timetable.js",
+  "reminders.js", "reading.js", "notifications.js", "settings.js",
+  "icon.svg", "icon-192.png", "icon-512.png", "icon-maskable-512.png", "apple-touch-icon.png"
 ];
 
 self.addEventListener("install", function (e) {
@@ -64,7 +64,7 @@ async function staleWhileRevalidate(req) {
 self.addEventListener("notificationclick", function (e) {
   e.notification.close();
   const data = e.notification.data || {};
-  const action = e.action;                       // "done", "snooze" or "" for a plain tap
+  const action = e.action;
   e.waitUntil(
     self.clients.matchAll({ type: "window", includeUncontrolled: true }).then(function (list) {
       for (const c of list) {
@@ -87,6 +87,6 @@ self.addEventListener("push", function (e) {
   let d = {};
   try { d = e.data ? e.data.json() : {}; } catch (err) {}
   e.waitUntil(self.registration.showNotification(d.title || "Nudge", {
-    body: d.body || "", icon: "assets/icons/icon-192.png", badge: "assets/icons/icon-192.png", data: { id: d.id || "" }
+    body: d.body || "", icon: "icon-192.png", badge: "icon-192.png", data: { id: d.id || "" }
   }));
 });

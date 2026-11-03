@@ -1,0 +1,29 @@
+/* ===== Nudge · login and sign up ===== */
+body.auth { display: grid; min-height: 100vh; }
+.auth-aside {
+  background: var(--ink); color: #fff;
+  padding: var(--s6) var(--s5);
+  display: flex; flex-direction: column; justify-content: space-between; gap: var(--s6);
+}
+.auth-aside h1 { font-size: var(--step-3); }
+.auth-aside p { color: #CFCDF5; }
+.auth-panel { width: min(460px, 100%); margin: 0 auto; padding: var(--s6) var(--s5) var(--s8); align-self: center; }
+.auth-panel h2 { font-size: var(--step-2); margin-bottom: var(--s5); }
+
+.seg { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 4px; border-radius: var(--r-pill); background: var(--line); margin-bottom: var(--s6); }
+.seg button { border: 0; background: transparent; color: var(--text); font: 600 var(--step-0)/1 var(--font-body); padding: 0.75rem; border-radius: var(--r-pill); cursor: pointer; }
+.seg button[aria-pressed="true"] { background: var(--surface); box-shadow: 0 1px 3px rgba(20, 19, 43, 0.15); }
+
+.pw { position: relative; }
+.pw .input { padding-right: 4.5rem; }
+.pw-toggle { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); border: 0; background: transparent; color: var(--muted); font: 600 var(--step--1)/1 var(--font-body); padding: 0.5rem; cursor: pointer; }
+.btn-block { width: 100%; }
+.divider { display: flex; align-items: center; gap: var(--s3); color: var(--muted); margin: var(--s5) 0; }
+.divider::before, .divider::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+
+@media (min-width: 860px) {
+  body.auth { grid-template-columns: 1fr 1fr; }
+  .auth-aside { padding: var(--s7); }
+  .auth-aside h1 { font-size: var(--step-4); }
+  .auth-panel { padding: var(--s7); }
+}

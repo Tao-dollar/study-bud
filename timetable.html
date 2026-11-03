@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Timetable · Nudge</title>
+  <meta name="theme-color" content="#1E1B4B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/timetable.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Nudge">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="app-header"></header>
+
+  <main class="app-main container" id="main">
+    <div class="tt-head">
+      <div>
+        <h1>Timetable</h1>
+        <p class="muted" id="range-label" aria-live="polite"></p>
+      </div>
+      <div class="tt-controls">
+        <div class="seg" role="group" aria-label="Timetable view">
+          <button type="button" data-view="week" aria-pressed="true">Week</button>
+          <button type="button" data-view="day" aria-pressed="false">Day</button>
+        </div>
+        <div class="week-nav">
+          <button class="btn btn-ghost btn-small" type="button" id="prev-btn">Previous</button>
+          <button class="btn btn-ghost btn-small" type="button" id="today-btn">This week</button>
+          <button class="btn btn-ghost btn-small" type="button" id="next-btn">Next</button>
+        </div>
+        <button class="btn btn-primary" type="button" id="add-btn">Add a class</button>
+      </div>
+    </div>
+
+    <div class="day-tabs" id="day-tabs" role="group" aria-label="Choose a day" hidden></div>
+    <div id="tt-empty"></div>
+
+    <div class="tt-wrap"><div class="tt" id="tt"></div></div>
+    <p class="muted tt-hint">Tip: drag a class to move it on a computer, or tap one to edit its day and time. Tap an empty slot to add a class there.</p>
+
+    <div class="tt-side">
+      <section aria-labelledby="free-h">
+        <h2 id="free-h">Free time</h2>
+        <div id="free-list"></div>
+      </section>
+      <details class="hours">
+        <summary>Adjust hours and slot length</summary>
+        <div class="hours-fields">
+          <div class="field"><label for="cfg-start">Day starts at</label><select class="select" id="cfg-start"></select></div>
+          <div class="field"><label for="cfg-end">Day ends at</label><select class="select" id="cfg-end"></select></div>
+          <div class="field"><label for="cfg-slot">Slot length</label>
+            <select class="select" id="cfg-slot"><option value="30">30 minutes</option><option value="60">1 hour</option></select></div>
+        </div>
+        <p class="hint muted">Classes outside these hours stay saved. They just won't show on the grid.</p>
+      </details>
+    </div>
+  </main>
+
+  <dialog id="entry-dialog" aria-labelledby="dlg-title">
+    <form id="entry-form" novalidate>
+      <h2 id="dlg-title">Add a class</h2>
+
+      <div class="row2">
+        <div class="field">
+          <label for="f-type">Type</label>
+          <select class="select" id="f-type" name="type">
+            <option value="class">Lecture</option><option value="lab">Lab</option>
+            <option value="tutorial">Tutorial</option><option value="study">Study block</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-course">Course code or topic</label>
+          <input class="input" id="f-course" name="course" list="course-options" maxlength="30" autocomplete="off">
+          <datalist id="course-options"></datalist>
+          <p class="error" id="f-course-error" role="alert"></p>
+        </div>
+      </div>
+
+      <div class="field"><label for="f-title">Title <span class="muted">(optional)</span></label>
+        <input class="input" id="f-title" name="title" maxlength="60"></div>
+
+      <div class="row2">
+        <div class="field"><label for="f-venue">Venue</label><input class="input" id="f-venue" name="venue" maxlength="40"></div>
+        <div class="field"><label for="f-lecturer">Lecturer</label><input class="input" id="f-lecturer" name="lecturer" maxlength="40"></div>
+      </div>
+
+      <div class="row2">
+        <div class="field"><label for="f-repeat">Repeats</label>
+          <select class="select" id="f-repeat" name="repeat"><option value="weekly">Every week</option><option value="once">Just once</option></select></div>
+        <div class="field" id="day-field"><label for="f-day">Day</label>
+          <select class="select" id="f-day" name="day">
+            <option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option>
+            <option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option><option value="0">Sunday</option>
+          </select></div>
+        <div class="field" id="date-field" hidden><label for="f-date">Date</label>
+          <input class="input" id="f-date" name="date" type="date"><p class="error" id="f-date-error" role="alert"></p></div>
+      </div>
+
+      <div class="row2">
+        <div class="field"><label for="f-start">Starts</label><input class="input" id="f-start" name="start" type="time" required></div>
+        <div class="field"><label for="f-end">Ends</label><input class="input" id="f-end" name="end" type="time" required>
+          <p class="error" id="f-end-error" role="alert"></p></div>
+      </div>
+
+      <fieldset class="swatches" id="swatches"><legend>Colour</legend></fieldset>
+
+      <p class="clash-warn" id="clash-warn" role="alert" hidden></p>
+      <p class="error" id="form-error" role="alert"></p>
+
+      <div class="dlg-actions">
+        <button class="btn btn-ghost" type="button" id="delete-btn" hidden>Delete</button>
+        <button class="btn btn-ghost" type="button" id="cancel-btn">Cancel</button>
+        <button class="btn btn-primary" type="submit" id="save-btn">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/storage.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/timetable.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

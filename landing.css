@@ -1,0 +1,63 @@
+/* ===== Nudge · landing page ===== */
+.hero { padding-block: var(--s7) var(--s8); }
+.hero .container { display: grid; gap: var(--s7); align-items: center; }
+.hero p.lead { font-size: var(--step-1); color: var(--muted); }
+.cta-row { display: flex; flex-wrap: wrap; gap: var(--s3); margin-top: var(--s5); }
+
+/* The memorable moment: a live checklist with a highlighter swash */
+.demo {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-l);
+  padding: var(--s6);
+}
+.demo h2 { font-size: var(--step-1); margin-bottom: var(--s1); }
+.demo .sub { color: var(--muted); font-size: var(--step--1); margin-bottom: var(--s4); }
+.demo-list { list-style: none; margin: 0 0 var(--s4); padding: 0; display: grid; gap: var(--s2); }
+.demo-item { display: flex; align-items: center; gap: var(--s3); padding: var(--s3); border-radius: var(--r-m); }
+.demo-item:hover { background: color-mix(in srgb, var(--line) 45%, transparent); }
+.demo-item input { width: 22px; height: 22px; accent-color: var(--teal); flex: none; cursor: pointer; }
+.demo-item label { cursor: pointer; flex: 1; display: grid; }
+.demo-item .what {
+  font-weight: 600; width: fit-content;
+  background: linear-gradient(var(--marker), var(--marker)) no-repeat 0 65% / 0% 45%;
+  transition: background-size 0.35s ease;
+}
+.demo-item input:checked + label .what { background-size: 100% 45%; color: var(--ink); }
+.demo-item .when { font-size: var(--step--1); color: var(--muted); }
+.demo-note {
+  margin: 0; padding: var(--s3) var(--s4); border-radius: var(--r-m);
+  background: color-mix(in srgb, var(--marker) 35%, transparent);
+  font-weight: 600; max-width: none;
+}
+
+/* How it works: a real sequence, so numbers are earned */
+.steps { padding-block: var(--s7); border-block: 1px solid var(--line); }
+.steps ol { list-style: none; padding: 0; margin: var(--s5) 0 0; display: grid; gap: var(--s5); counter-reset: step; }
+.steps li { counter-increment: step; display: grid; grid-template-columns: auto 1fr; gap: var(--s4); align-items: start; }
+.steps li::before {
+  content: counter(step);
+  display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+  background: var(--marker); color: var(--ink); font: 800 1.1rem/1 var(--font-head);
+}
+.steps li p { margin: 0; color: var(--muted); }
+.steps li strong { color: var(--text); font-family: var(--font-head); font-size: var(--step-1); display: block; }
+
+/* Features: a plain two-column list, not a grid of identical cards */
+.features { padding-block: var(--s8); }
+.features dl { display: grid; gap: var(--s6); margin: var(--s6) 0 0; }
+.features dt { font: 700 var(--step-2)/1.2 var(--font-head); margin-bottom: var(--s2); }
+.features dd { margin: 0; color: var(--muted); max-width: 52ch; }
+
+.closing { padding-block: var(--s8); background: var(--ink); color: #fff; }
+.closing p { color: #CFCDF5; }
+.closing .btn-primary { background: var(--marker); color: var(--ink); }
+
+.site-footer { padding-block: var(--s6); color: var(--muted); font-size: var(--step--1); }
+
+@media (min-width: 860px) {
+  .hero .container { grid-template-columns: 1.1fr 0.9fr; }
+  .steps ol { grid-template-columns: repeat(3, 1fr); }
+  .steps li { grid-template-columns: 1fr; }
+  .features dl { grid-template-columns: 1fr 1fr; column-gap: var(--s8); }
+}

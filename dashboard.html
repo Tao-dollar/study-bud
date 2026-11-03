@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Home · Nudge</title>
+  <meta name="theme-color" content="#1E1B4B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Nudge">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="app-header"></header>
+
+  <main class="app-main container" id="main">
+    <div id="install-slot"></div>
+    <section class="dash-hero">
+      <h1 id="dash-greeting"></h1>
+      <p class="lead" id="dash-summary"></p>
+      <ul class="chips" id="dash-courses" aria-label="Your courses"></ul>
+    </section>
+
+    <div class="dash-grid">
+      <section aria-labelledby="today-h">
+        <h2 id="today-h">Today's classes</h2>
+        <div id="today-list"></div>
+      </section>
+
+      <div class="side">
+        <p class="streak-strip" id="streak-text"></p>
+        <section aria-labelledby="soon-h">
+          <h2 id="soon-h">Coming up</h2>
+          <div id="deadline-list"></div>
+        </section>
+        <section aria-labelledby="read-h">
+          <h2 id="read-h">Reading this week</h2>
+          <div id="reading-list"></div>
+        </section>
+      </div>
+    </div>
+
+    <p class="tip" id="dash-tip"></p>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/dashboard.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

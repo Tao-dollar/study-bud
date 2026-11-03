@@ -1,0 +1,24 @@
+/* ===== Nudge · onboarding ===== */
+.onboard { width: min(560px, 100% - 2.5rem); margin: var(--s5) auto var(--s8); }
+.onboard h1 { font-size: var(--step-3); }
+.step-label { color: var(--muted); font-weight: 600; margin-bottom: var(--s2); }
+.bar { height: 8px; background: var(--line); border-radius: var(--r-pill); overflow: hidden; margin-bottom: var(--s6); }
+.bar span { display: block; height: 100%; width: 33%; background: var(--marker); border-radius: var(--r-pill); transition: width 0.3s ease; }
+.actions { display: flex; justify-content: space-between; gap: var(--s3); margin-top: var(--s5); }
+.actions .btn-primary { margin-left: auto; }
+
+.add-row { display: grid; grid-template-columns: 1fr; gap: var(--s2); }
+@media (min-width: 520px) { .add-row { grid-template-columns: 9rem 1fr auto; } }
+.course-list { list-style: none; padding: 0; margin: 0 0 var(--s4); display: grid; gap: var(--s2); }
+.course-list li { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); padding: 0.7rem 1rem; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-m); }
+.course-list .code { font-weight: 700; margin-right: var(--s2); }
+.course-list button { border: 0; background: transparent; color: var(--rose); font: 600 var(--step--1)/1 var(--font-body); cursor: pointer; padding: 0.4rem; }
+
+.times { border: 0; padding: 0; margin: 0 0 var(--s5); display: grid; grid-template-columns: 1fr 1fr; gap: var(--s3); }
+.times label { cursor: pointer; }
+.times input { position: absolute; opacity: 0; }
+.times span { display: grid; padding: var(--s4); border: 2px solid var(--line); border-radius: var(--r-m); font-weight: 600; background: var(--surface); }
+.times small { font-weight: 400; color: var(--muted); }
+.times input:checked + span { border-color: var(--text); background: color-mix(in srgb, var(--marker) 45%, var(--surface)); color: var(--ink); }
+.times input:checked + span small { color: var(--ink); }
+.times input:focus-visible + span { outline: 3px solid var(--marker); outline-offset: 3px; }

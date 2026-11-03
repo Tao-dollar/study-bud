@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Reading plan · Nudge</title>
+  <meta name="theme-color" content="#1E1B4B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/lists.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Nudge">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="app-header"></header>
+
+  <main class="app-main container" id="main">
+    <div class="page-head">
+      <div>
+        <h1>Reading plan</h1>
+        <p class="muted">Set a goal once. Nudge finds the time.</p>
+      </div>
+      <button class="btn btn-primary" type="button" id="add-btn">Set a reading goal</button>
+    </div>
+
+    <section class="goals-wrap" aria-labelledby="goals-h">
+      <h2 id="goals-h">This week</h2>
+      <div class="goals" id="goals"></div>
+    </section>
+
+    <section class="plan" aria-labelledby="plan-h">
+      <h2 id="plan-h">Coming up</h2>
+      <div id="plan"></div>
+      <p class="plan-note">Sessions are placed in the gaps of your timetable, inside the study times you picked. They update whenever you change your timetable or log a session.</p>
+    </section>
+  </main>
+
+  <dialog id="dlg" aria-labelledby="dlg-title">
+    <form id="form" novalidate>
+      <h2 id="dlg-title">Set a reading goal</h2>
+      <div class="field">
+        <label for="f-course">Course</label>
+        <input class="input" id="f-course" name="course" list="course-options" maxlength="30" autocomplete="off">
+        <datalist id="course-options"></datalist>
+        <p class="error" id="f-course-error" role="alert"></p>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-minutes">How long each time?</label>
+          <select class="select" id="f-minutes" name="minutes">
+            <option value="30">30 minutes</option><option value="45">45 minutes</option>
+            <option value="60" selected>1 hour</option><option value="90">1 hour 30 minutes</option><option value="120">2 hours</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-perweek">How many times a week?</label>
+          <select class="select" id="f-perweek" name="perWeek">
+            <option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option><option>6</option><option>7</option>
+          </select>
+        </div>
+      </div>
+      <p class="error" id="form-error" role="alert"></p>
+      <div class="dlg-actions">
+        <button class="btn btn-ghost" type="button" id="delete-btn" hidden>Delete</button>
+        <button class="btn btn-ghost" type="button" id="cancel-btn">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save goal</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/storage.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/reading.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

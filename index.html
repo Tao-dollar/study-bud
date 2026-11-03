@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nudge: study reminders that talk like a friend</title>
+  <meta name="description" content="A reminder app for university students. Adjustable timetable, reading nudges, and a gentle voice.">
+  <meta name="theme-color" content="#1E1B4B">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/landing.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Nudge">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="Nudge home">
+        <svg viewBox="0 0 40 40" aria-hidden="true">
+          <rect width="40" height="40" rx="12" fill="#FFD84D"/>
+          <path d="M11 21l6 6 12-14" fill="none" stroke="#1E1B4B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Nudge
+      </a>
+      <nav class="nav" aria-label="Main">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-pressed="false">Dark mode</button>
+        <a class="btn btn-ghost btn-small" href="login.html">Log in</a>
+        <a class="btn btn-primary btn-small" href="login.html?mode=signup">Get started</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="container">
+        <div>
+          <h1>Study reminders that talk like a friend, not an alarm.</h1>
+          <p class="lead">Put your timetable in once. Nudge tells you when to read, what's due, and when to take a break, in words that don't make you feel behind.</p>
+          <div class="cta-row">
+            <a class="btn btn-primary" href="login.html?mode=signup">Create my free account</a>
+            <a class="btn btn-ghost" href="#how">See how it works</a>
+          </div>
+        </div>
+
+        <div class="demo" aria-labelledby="demo-greeting">
+          <h2 id="demo-greeting">Good evening.</h2>
+          <p class="sub">Try it: tick something off.</p>
+          <ul class="demo-list" id="demo-list"></ul>
+          <p class="demo-note" id="demo-note" aria-live="polite"></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="steps" id="how">
+      <div class="container">
+        <h2>Set up in about two minutes</h2>
+        <ol>
+          <li>
+            <div>
+              <strong>Tell us about your semester</strong>
+              <p>Your courses, your level, and the hours you read best.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Drop in your timetable</strong>
+              <p>Add classes once. Move them around whenever the faculty changes things.</p>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Let Nudge do the remembering</strong>
+              <p>Reading goals, deadlines and class alerts arrive at the right time.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="container">
+        <h2>Built around how students actually study</h2>
+        <dl>
+          <div>
+            <dt>A timetable that bends</dt>
+            <dd>Lecture moved? Drag it. Clash with a lab? We'll tell you before you miss one.</dd>
+          </div>
+          <div>
+            <dt>Reading reminders you set once</dt>
+            <dd>"MTH201, one hour, three times a week." Nudge finds the free slots and reminds you.</dd>
+          </div>
+          <div>
+            <dt>Yours, not generic</dt>
+            <dd>Log in and your name, courses and study times are already there.</dd>
+          </div>
+          <div>
+            <dt>Install it like an app</dt>
+            <dd>Add Nudge to your phone or laptop. It keeps working when the network doesn't.</dd>
+          </div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="container">
+        <h2>Ready for a calmer semester?</h2>
+        <p>It's free, and it takes less time than finding your notes.</p>
+        <a class="btn btn-primary" href="login.html?mode=signup">Create my free account</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">Nudge &copy; <span id="year">2026</span>. Made for students who have a lot going on.</div>
+  </footer>
+
+  <script src="js/storage.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/landing.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+/* ===== Nudge · reusable components (used on every page) ===== */
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s2);
+  font: 600 var(--step-0)/1 var(--font-body);
+  padding: 0.9rem 1.4rem;
+  border-radius: var(--r-pill);
+  border: 2px solid transparent;
+  cursor: pointer; text-decoration: none;
+  transition: transform 0.15s ease, filter 0.15s ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary { background: var(--btn-bg); color: var(--btn-fg); }
+.btn-primary:hover { filter: brightness(1.12); }
+.btn-ghost { background: transparent; color: var(--text); border-color: var(--line); }
+.btn-ghost:hover { border-color: var(--text); }
+.btn-small { padding: 0.55rem 1rem; font-size: var(--step--1); }
+
+/* Form fields (login, onboarding, reminders, timetable) */
+.field { display: grid; gap: var(--s2); margin-bottom: var(--s4); }
+.field label { font-weight: 600; }
+.field .hint { font-size: var(--step--1); color: var(--muted); }
+.field .error { font-size: var(--step--1); color: var(--rose); min-height: 1.2em; }
+.input, .select, .textarea {
+  width: 100%;
+  font: inherit; color: var(--text);
+  background: var(--surface);
+  border: 2px solid var(--line);
+  border-radius: var(--r-m);
+  padding: 0.8rem 1rem;
+}
+.input:focus, .select:focus, .textarea:focus {
+  border-color: var(--text); outline: none;
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--marker) 70%, transparent);
+}
+.input[aria-invalid="true"] { border-color: var(--rose); }
+
+/* Surfaces */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--r-m);
+  padding: var(--s5);
+}
+
+/* Small tags: course codes, priority */
+.tag {
+  display: inline-block; font-size: var(--step--1); font-weight: 600;
+  padding: 0.15rem 0.7rem; border-radius: var(--r-pill);
+  background: color-mix(in srgb, var(--marker) 55%, transparent); color: var(--ink);
+}
+.tag-urgent { background: color-mix(in srgb, var(--rose) 18%, transparent); color: var(--rose); }
+.tag-done { background: color-mix(in srgb, var(--teal) 18%, transparent); color: var(--teal); }
+
+/* Site header (shared) */
+.site-header { padding-block: var(--s4); }
+.site-header .container { display: flex; align-items: center; justify-content: space-between; gap: var(--s4); }
+.brand { display: inline-flex; align-items: center; gap: var(--s2); text-decoration: none; font: 800 1.4rem/1 var(--font-head); }
+.brand svg { width: 34px; height: 34px; }
+.nav { display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+.theme-toggle {
+  border: 2px solid var(--line); background: transparent; color: var(--text);
+  border-radius: var(--r-pill); padding: 0.5rem 0.9rem;
+  font: 600 var(--step--1)/1 var(--font-body); cursor: pointer;
+}
+
+/* Empty state: always an invitation to act */
+.empty { text-align: center; padding: var(--s7) var(--s4); }
+.empty h3 { margin-bottom: var(--s2); }
+.empty p { margin-inline: auto; color: var(--muted); }
+
+/* Toasts */
+.toast-region {
+  position: fixed; inset: auto 0 var(--s5) 0; z-index: 200;
+  display: grid; justify-items: center; gap: var(--s2); pointer-events: none;
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+.toast {
+  pointer-events: auto;
+  background: var(--btn-bg); color: var(--btn-fg);
+  padding: 0.8rem 1.2rem; border-radius: var(--r-pill);
+  font-weight: 600; max-width: min(92vw, 420px);
+  box-shadow: 0 6px 24px rgba(20, 19, 43, 0.25);
+}
+.toast.is-error { background: var(--rose); color: #fff; }
+
+/* Dialog */
+dialog { width: min(560px, calc(100% - 1.5rem)); max-height: 92vh; border: 0; border-radius: var(--r-l); padding: var(--s6); background: var(--surface); color: var(--text); }
+dialog::backdrop { background: rgba(20, 19, 43, 0.55); }
+dialog h2 { font-size: var(--step-2); }
+.row2 { display: grid; gap: 0 var(--s4); }
+@media (min-width: 520px) { .row2 { grid-template-columns: 1fr 1fr; } }
+.dlg-actions { display: flex; gap: var(--s3); justify-content: flex-end; flex-wrap: wrap; }
+.dlg-actions #delete-btn { margin-right: auto; color: var(--rose); }

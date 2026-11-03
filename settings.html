@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Settings · Nudge</title>
+  <meta name="theme-color" content="#1E1B4B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/settings.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Nudge">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="app-header"></header>
+
+  <main class="app-main container settings" id="main">
+    <h1>Settings</h1>
+
+    <section aria-labelledby="profile-h">
+      <h2 id="profile-h">Your profile</h2>
+      <form id="profile-form" novalidate>
+        <div class="row2">
+          <div class="field"><label for="p-name">Full name</label><input class="input" id="p-name" name="name" autocomplete="name"><p class="error" id="p-name-error" role="alert"></p></div>
+          <div class="field"><label for="p-nick">What we call you</label><input class="input" id="p-nick" name="nickname"><p class="error" id="p-nick-error" role="alert"></p></div>
+        </div>
+        <div class="row2">
+          <div class="field"><label for="p-uni">University</label><input class="input" id="p-uni" name="university"></div>
+          <div class="field"><label for="p-course">Course of study</label><input class="input" id="p-course" name="course"></div>
+        </div>
+        <div class="field narrow"><label for="p-level">Level</label>
+          <select class="select" id="p-level" name="level"><option>100L</option><option>200L</option><option>300L</option><option>400L</option><option>500L</option><option>600L</option><option>Postgraduate</option></select></div>
+        <div class="btn-row">
+          <button class="btn btn-primary" type="submit">Save profile</button>
+          <a class="btn btn-ghost" href="onboarding.html">Edit courses and study times</a>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="alerts-h">
+      <h2 id="alerts-h">Alerts</h2>
+      <div class="notice" id="permission-box"></div>
+      <form id="alerts-form">
+        <fieldset class="toggles">
+          <legend class="visually-hidden">Which alerts to send</legend>
+          <label><input type="checkbox" name="class"><span>Class warnings<small>Before each class or lab</small></span></label>
+          <label><input type="checkbox" name="reminder"><span>Deadlines<small>A day before, an hour before, and when due</small></span></label>
+          <label><input type="checkbox" name="reading"><span>Reading times<small>When a planned session starts</small></span></label>
+          <label><input type="checkbox" name="daily"><span>Daily summary<small>One message about tomorrow</small></span></label>
+        </fieldset>
+        <div class="row2">
+          <div class="field"><label for="a-lead">Warn me before class</label>
+            <select class="select" id="a-lead" name="lead"><option value="15">15 minutes before</option><option value="30">30 minutes before</option><option value="60">1 hour before</option></select></div>
+          <div class="field"><label for="a-time">Daily summary time</label><input class="input" id="a-time" name="remindAt" type="time"></div>
+        </div>
+      </form>
+    </section>
+
+    <section aria-labelledby="look-h">
+      <h2 id="look-h">Appearance</h2>
+      <div class="field narrow"><label for="theme-select">Theme</label>
+        <select class="select" id="theme-select"><option value="">Match my device</option><option value="light">Light</option><option value="dark">Dark</option></select></div>
+    </section>
+
+    <section aria-labelledby="install-h">
+      <h2 id="install-h">Install the app</h2>
+      <p id="install-text" class="muted"></p>
+      <button class="btn btn-primary" type="button" id="install-btn" data-install hidden>Install Nudge</button>
+    </section>
+
+    <section aria-labelledby="data-h">
+      <h2 id="data-h">Your data</h2>
+      <p class="muted">Everything lives on this device. Download a copy any time, or erase it all.</p>
+      <div class="btn-row">
+        <button class="btn btn-ghost" type="button" id="export-btn">Download my data</button>
+        <button class="btn btn-ghost danger" type="button" id="delete-open">Delete my account</button>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="delete-dialog" aria-labelledby="del-title">
+    <form id="delete-form" novalidate>
+      <h2 id="del-title">Delete your account?</h2>
+      <p>This erases your timetable, reminders, reading goals and profile from this device. It can't be undone.</p>
+      <div class="field">
+        <label for="del-confirm">Type DELETE to confirm</label>
+        <input class="input" id="del-confirm" autocomplete="off">
+        <p class="error" id="del-confirm-error" role="alert"></p>
+      </div>
+      <div class="dlg-actions">
+        <button class="btn btn-ghost" type="button" id="del-cancel">Keep my account</button>
+        <button class="btn btn-primary danger-solid" type="submit">Delete everything</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/storage.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/settings.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Set up · Nudge</title>
+  <meta name="theme-color" content="#1E1B4B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/onboarding.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Nudge">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to the form</a>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="index.html" aria-label="Nudge home">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><rect width="40" height="40" rx="12" fill="#FFD84D"/><path d="M11 21l6 6 12-14" fill="none" stroke="#1E1B4B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Nudge
+      </a>
+    </div>
+  </header>
+
+  <main class="onboard" id="main">
+    <p class="step-label" id="step-label" aria-live="polite">Step 1 of 3</p>
+    <div class="bar" aria-hidden="true"><span id="bar-fill"></span></div>
+
+    <form id="onboard-form" novalidate>
+      <!-- Step 1 -->
+      <section data-step="1" aria-labelledby="s1-title">
+        <h1 id="s1-title">First, a little about you</h1>
+        <p class="muted">This is how Nudge will greet you and what it will call your semester.</p>
+        <div class="field">
+          <label for="nickname">What should we call you?</label>
+          <input class="input" id="nickname" name="nickname" autocomplete="nickname">
+          <p class="error" id="nickname-error" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="university">University</label>
+          <input class="input" id="university" name="university" autocomplete="organization">
+          <p class="error" id="university-error" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="course-of-study">Course of study</label>
+          <input class="input" id="course-of-study" name="course" placeholder="e.g. Computer Science">
+          <p class="error" id="course-of-study-error" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="level">Level</label>
+          <select class="select" id="level" name="level">
+            <option value="">Choose your level</option>
+            <option>100L</option><option>200L</option><option>300L</option>
+            <option>400L</option><option>500L</option><option>600L</option><option>Postgraduate</option>
+          </select>
+          <p class="error" id="level-error" role="alert"></p>
+        </div>
+      </section>
+
+      <!-- Step 2 -->
+      <section data-step="2" aria-labelledby="s2-title" hidden>
+        <h1 id="s2-title">Which courses are you taking?</h1>
+        <p class="muted">Add each course code. You can change these any time.</p>
+        <div class="field">
+          <label for="course-code">Course code</label>
+          <div class="add-row">
+            <input class="input" id="course-code" placeholder="e.g. MTH201" autocomplete="off" maxlength="12">
+            <input class="input" id="course-title" placeholder="Title (optional)" autocomplete="off" maxlength="60" aria-label="Course title, optional">
+            <button class="btn btn-ghost" type="button" id="add-course">Add</button>
+          </div>
+          <p class="error" id="course-error" role="alert"></p>
+        </div>
+        <ul class="course-list" id="course-list" aria-label="Your courses"></ul>
+        <p class="muted" id="course-count"></p>
+      </section>
+
+      <!-- Step 3 -->
+      <section data-step="3" aria-labelledby="s3-title" hidden>
+        <h1 id="s3-title">When do you read best?</h1>
+        <p class="muted">We'll schedule reading nudges in these windows. Pick as many as you like.</p>
+        <fieldset class="times">
+          <legend class="visually-hidden">Preferred study times</legend>
+          <label><input type="checkbox" name="times" value="morning"><span>Morning<small>6 to 10 AM</small></span></label>
+          <label><input type="checkbox" name="times" value="afternoon"><span>Afternoon<small>1 to 5 PM</small></span></label>
+          <label><input type="checkbox" name="times" value="evening"><span>Evening<small>6 to 9 PM</small></span></label>
+          <label><input type="checkbox" name="times" value="late"><span>Late night<small>10 PM onwards</small></span></label>
+        </fieldset>
+        <div class="field">
+          <label for="remind-at">Send my daily summary at</label>
+          <input class="input" id="remind-at" name="remindAt" type="time" value="19:00">
+          <span class="hint">One gentle message about tomorrow.</span>
+        </div>
+        <div class="field">
+          <label for="lead">Warn me before class</label>
+          <select class="select" id="lead" name="lead">
+            <option value="15">15 minutes before</option>
+            <option value="30" selected>30 minutes before</option>
+            <option value="60">1 hour before</option>
+          </select>
+        </div>
+      </section>
+
+      <p class="error form-error" id="form-error" role="alert"></p>
+      <div class="actions">
+        <button class="btn btn-ghost" type="button" id="back-btn" hidden>Back</button>
+        <button class="btn btn-primary" type="submit" id="next-btn">Continue</button>
+      </div>
+    </form>
+  </main>
+
+  <script src="js/storage.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/onboarding.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

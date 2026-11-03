@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Reminders · Nudge</title>
+  <meta name="theme-color" content="#1E1B4B">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="stylesheet" href="css/lists.css">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="assets/icons/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Nudge">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header id="app-header"></header>
+
+  <main class="app-main container" id="main">
+    <div class="page-head">
+      <div>
+        <h1>Reminders</h1>
+        <p class="muted" id="summary" aria-live="polite"></p>
+      </div>
+      <button class="btn btn-primary" type="button" id="add-btn">Add a reminder</button>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter reminders" id="filters"></div>
+    <div id="list"></div>
+  </main>
+
+  <dialog id="dlg" aria-labelledby="dlg-title">
+    <form id="form" novalidate>
+      <h2 id="dlg-title">Add a reminder</h2>
+      <div class="field">
+        <label for="f-title">What do you need to remember?</label>
+        <input class="input" id="f-title" name="title" maxlength="100" autocomplete="off">
+        <p class="error" id="f-title-error" role="alert"></p>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-kind">Type</label>
+          <select class="select" id="f-kind" name="kind">
+            <option value="assignment">Assignment</option><option value="test">Test</option>
+            <option value="exam">Exam</option><option value="deadline">Deadline</option><option value="other">Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-course">Course <span class="muted">(optional)</span></label>
+          <input class="input" id="f-course" name="course" list="course-options" maxlength="30" autocomplete="off">
+          <datalist id="course-options"></datalist>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-date">Due date</label>
+          <input class="input" id="f-date" name="date" type="date">
+          <p class="error" id="f-date-error" role="alert"></p>
+        </div>
+        <div class="field">
+          <label for="f-time">Due time</label>
+          <input class="input" id="f-time" name="time" type="time">
+          <p class="error" id="f-time-error" role="alert"></p>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field">
+          <label for="f-priority">Priority</label>
+          <select class="select" id="f-priority" name="priority">
+            <option value="high">High</option><option value="medium" selected>Medium</option><option value="low">Low</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-repeat">Repeats</label>
+          <select class="select" id="f-repeat" name="repeat">
+            <option value="none">Doesn't repeat</option><option value="daily">Every day</option><option value="weekly">Every week</option>
+          </select>
+        </div>
+      </div>
+      <p class="hint muted" id="past-note" hidden>That time has already passed, so this will show up as overdue.</p>
+      <p class="error" id="form-error" role="alert"></p>
+      <div class="dlg-actions">
+        <button class="btn btn-ghost" type="button" id="cancel-btn">Cancel</button>
+        <button class="btn btn-primary" type="submit">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script src="js/storage.js"></script>
+  <script src="js/copy.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/alerts.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/reminders.js"></script>
+  <script src="js/pwa.js"></script>
+</body>
+</html>

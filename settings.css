@@ -1,0 +1,22 @@
+/* ===== Nudge · settings ===== */
+.settings { max-width: 760px; }
+.settings h1 { font-size: var(--step-3); margin-bottom: var(--s6); }
+.settings section { padding-block: var(--s6); border-top: 1px solid var(--line); }
+.settings section:first-of-type { border-top: 0; padding-top: 0; }
+.settings h2 { font-size: var(--step-2); }
+.field.narrow { max-width: 20rem; }
+.btn-row { display: flex; flex-wrap: wrap; gap: var(--s3); }
+.btn.danger { color: var(--rose); border-color: color-mix(in srgb, var(--rose) 50%, var(--line)); }
+.btn.danger-solid { background: var(--rose); color: #fff; }
+
+.notice { margin-bottom: var(--s5); padding: var(--s4) var(--s5); border: 1px solid var(--line); border-left: 6px solid var(--marker); border-radius: var(--r-m); background: var(--surface); }
+.notice p { margin: 0 0 var(--s2); max-width: none; }
+.notice .actions { display: flex; flex-wrap: wrap; gap: var(--s2); margin-top: var(--s3); }
+.notice.is-on { border-left-color: var(--teal); }
+.notice.is-blocked { border-left-color: var(--rose); }
+
+.toggles { border: 0; padding: 0; margin: 0 0 var(--s5); display: grid; gap: var(--s3); }
+.toggles label { display: flex; gap: var(--s3); align-items: flex-start; padding: var(--s3) var(--s4); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-m); cursor: pointer; }
+.toggles input { width: 22px; height: 22px; margin-top: 2px; accent-color: var(--teal); flex: none; }
+.toggles span { display: grid; font-weight: 600; }
+.toggles small { font-weight: 400; color: var(--muted); }
